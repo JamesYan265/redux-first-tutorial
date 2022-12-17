@@ -1,0 +1,32 @@
+//actions -> increment, decrement
+const increment = () => {
+  return {
+    type: "INCREMENT",
+  }
+}
+
+const decrement = () => {
+  return {
+    type: "DECREMENT",
+  }
+}
+
+//reducer 整合action同之前的狀態去更新新的狀態
+const counterReducer = (state = 0, action) => {
+  switch(action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+  }
+};
+
+//store
+let store = createStore(counterReducer);
+
+//顯示新狀態
+store.subscribe(() => console.log(store.getState()));
+
+//dispatch
+store.dispatch(increment());
+store.dispatch(decrement());
